@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @rc4_program.key %>
+</p>
+
+<p>
+  <strong>Transient message:</strong>
+  <%= @rc4_program.transient_message %>
+</p>
+
+<p>
+  <strong>Chanted message:</strong>
+  <%= @rc4_program.chanted_message %>
+</p>
+
+<p>
+  <strong>Message text:</strong>
+  <%= @rc4_program.message_text %>
+</p>
+
+<%= link_to 'Edit', edit_rc4_program_path(@rc4_program) %> |
+<%= link_to 'Back', rc4_programs_path %>
