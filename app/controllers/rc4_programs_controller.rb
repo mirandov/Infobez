@@ -25,15 +25,7 @@ class Rc4ProgramsController < ApplicationController
   # POST /rc4_programs.json
   def create
     @rc4_program = Rc4Program.new(rc4_program_params)
-    key = @rc4_program.key
-    plight_generate key
-    @rc4_program.chanted_message = @rc4_program.transient_message
-    @rc4_program.message_text = encrypt(@rc4_program.chanted_message)
-    raise   @rc4_program.message_text.encode('utf-8').inspect
-
-    # @rc4_program.message_text =  @rc4_program.message_text
-    # raise @rc4_program.chanted_message.inspect
-
+    process_encrypted
     respond_to do |format|
       if @rc4_program.save
         format.html { redirect_to @rc4_program, notice: 'Rc4 program was successfully created.' }
@@ -67,6 +59,21 @@ class Rc4ProgramsController < ApplicationController
       format.html { redirect_to rc4_programs_url, notice: 'Rc4 program was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def process_encrypted
+    key = @rc4_program.key
+    plight_generate key
+    #Присваиваем текст сообщения полю которое отвечает за кодирование сообщения @rc4_program.chanted_message
+    @rc4_program.chanted_message = @rc4_program.transient_message
+    #Кодируем сообщение
+    encrypt(@rc4_program.chanted_message)
+    #Присваиваем значение кодированого сообщения полю которое отвечает за раскодирование @rc4_program.message_text
+    @rc4_program.message_text = @rc4_program.chanted_message
+    #Инициализируем состояние ключей
+    plight_generate key
+    #Раскодируем кодированое сообщение
+    encrypt(@rc4_program.message_text)
   end
 
   #Шифрование

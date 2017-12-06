@@ -19,8 +19,8 @@
       <tr>
         <td><%= rc4_program.key %></td>
         <td><%= rc4_program.transient_message %></td>
-        <td><%= rc4_program.chanted_message %></td>
-        <td><%= rc4_program.message_text %></td>
+        <td><%= rc4_program.chanted_message.encode('UTF-8', invalid: :replace, undef: :replace, replace: '') %></td>
+        <td><%= (rc4_program.message_text.nil?) ? rc4_program.message_text : rc4_program.message_text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '') %></td>
         <td><%= link_to 'Show', rc4_program %></td>
         <td><%= link_to 'Edit', edit_rc4_program_path(rc4_program) %></td>
         <td><%= link_to 'Destroy', rc4_program, method: :delete, data: { confirm: 'Are you sure?' } %></td>
