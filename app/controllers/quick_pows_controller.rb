@@ -21,16 +21,6 @@ class QuickPowsController < ApplicationController
   def edit
   end
 
-  def quik_pow_residues(base, pow, ring_of_residues)
-    @result = 1
-    loop do
-      break if pow == 0 || pow < 0
-      pow & 1 == 1 ? (@result = (@result * base) % ring_of_residues) : @result = @result
-      base = (base * base) % ring_of_residues
-      pow = pow >> 1
-    end
-    return @result
-  end 
   # POST /quick_pows
   # POST /quick_pows.json
   def create
@@ -76,6 +66,18 @@ class QuickPowsController < ApplicationController
   end
 
   private
+    def quik_pow_residues(base, pow, ring_of_residues)
+      @result = 1
+
+      loop do
+        break if pow == 0 || pow < 0
+        pow & 1 == 1 ? (@result = (@result * base) % ring_of_residues) : @result = @result
+        base = (base * base) % ring_of_residues
+        pow  = pow >> 1
+      end
+      
+      return @result
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_quick_pow
       @quick_pow = QuickPow.find(params[:id])
