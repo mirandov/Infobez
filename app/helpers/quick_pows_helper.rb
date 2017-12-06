@@ -1,0 +1,2 @@
+module QuickPowsHelper
+end

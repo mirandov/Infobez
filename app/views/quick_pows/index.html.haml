@@ -1,0 +1,27 @@
+%h1 Listing quick_pows
+
+%table
+  %thead
+    %tr
+      %th Basis
+      %th Exponent
+      %th Ring of residues
+      %th Result
+      %th
+      %th
+      %th
+
+  %tbody
+    - @quick_pows.each do |quick_pow|
+      %tr
+        %td= quick_pow.basis
+        %td= quick_pow.exponent
+        %td= quick_pow.ring_of_residues
+        %td= quick_pow.result
+        %td= link_to 'Show', quick_pow
+        %td= link_to 'Edit', edit_quick_pow_path(quick_pow)
+        %td= link_to 'Destroy', quick_pow, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Quick pow', new_quick_pow_path

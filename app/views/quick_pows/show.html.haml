@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Basis:
+  = @quick_pow.basis
+%p
+  %b Exponent:
+  = @quick_pow.exponent
+%p
+  %b Ring of residues:
+  = @quick_pow.ring_of_residues
+%p
+  %b Result:
+  = @quick_pow.result
+
+= link_to 'Edit', edit_quick_pow_path(@quick_pow)
+\|
+= link_to 'Back', quick_pows_path

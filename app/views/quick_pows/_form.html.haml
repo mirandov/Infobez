@@ -1,0 +1,19 @@
+= form_for @quick_pow do |f|
+  - if @quick_pow.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@quick_pow.errors.count, "error")} prohibited this quick_pow from being saved:"
+      %ul
+        - @quick_pow.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :basis
+    = f.text_field :basis
+  .field
+    = f.label :exponent
+    = f.text_field :exponent
+  .field
+    = f.label :ring_of_residues
+    = f.text_field :ring_of_residues
+  .actions
+    = f.submit 'Save'

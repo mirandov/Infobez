@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122085640) do
+ActiveRecord::Schema.define(version: 20171206094747) do
+
+  create_table "quick_pows", force: :cascade do |t|
+    t.string   "basis"
+    t.string   "exponent"
+    t.string   "ring_of_residues"
+    t.string   "result"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "rc4_programs", force: :cascade do |t|
     t.string   "key"
