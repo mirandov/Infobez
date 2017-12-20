@@ -115,21 +115,7 @@ class Rc4ProgramsController < ApplicationController
 
   private
 
-    # #Инициализация ключей для состояний
-    # def plight_generate key
-    #   @plight = []
-    #   length  = key.length
-    #   j       = 0
-    #
-    #   for i in 0..255
-    #     @plight[i] = i
-    #   end
-    #
-    #   @plight.each do |i|
-    #       j = (j + @plight[i] + key.getbyte( i % length)) % 256
-    #       @plight[i], @plight[j] = @plight[j],@plight[i]
-    #   end
-    # end
+    
 
     # Use callbacks to share common setup or constraints between actions.
     def set_rc4_program
