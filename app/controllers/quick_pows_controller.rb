@@ -72,9 +72,7 @@ class QuickPowsController < ApplicationController
       loop do
         break if pow == 0 || pow < 0
         if pow & 1 == 1
-          @result = (@result * base) % ring_of_residues)
-        else
-          @result = @result
+          @result = (@result * base) % ring_of_residues
         end
         base = (base * base) % ring_of_residues
         pow  = pow >> 1
