@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :quick_pows
+
+  root 'quick_pows#index'
+
+  resources :quick_pows, except: :show
   resources :rc4_programs
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

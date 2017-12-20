@@ -7,11 +7,6 @@ class QuickPowsController < ApplicationController
     @quick_pows = QuickPow.all
   end
 
-  # GET /quick_pows/1
-  # GET /quick_pows/1.json
-  def show
-  end
-
   # GET /quick_pows/new
   def new
     @quick_pow = QuickPow.new
@@ -32,7 +27,7 @@ class QuickPowsController < ApplicationController
     @quick_pow.result = @result.to_s
     respond_to do |format|
       if @quick_pow.save
-        format.html { redirect_to @quick_pow, notice: 'Quick pow was successfully created.' }
+        format.html { redirect_to quick_pows_url, notice: t('flash.quick_pow.create') }
         format.json { render :show, status: :created, location: @quick_pow }
       else
         format.html { render :new }
@@ -46,7 +41,7 @@ class QuickPowsController < ApplicationController
   def update
     respond_to do |format|
       if @quick_pow.update(quick_pow_params)
-        format.html { redirect_to @quick_pow, notice: 'Quick pow was successfully updated.' }
+        format.html { redirect_to quick_pows_url, notice: t('flash.quick_pow.update') }
         format.json { render :show, status: :ok, location: @quick_pow }
       else
         format.html { render :edit }
@@ -60,7 +55,7 @@ class QuickPowsController < ApplicationController
   def destroy
     @quick_pow.destroy
     respond_to do |format|
-      format.html { redirect_to quick_pows_url, notice: 'Quick pow was successfully destroyed.' }
+      format.html { redirect_to quick_pows_url, notice: t('flash.quick_pow.delete') }
       format.json { head :no_content }
     end
   end
@@ -69,15 +64,21 @@ class QuickPowsController < ApplicationController
     def quik_pow_residues(base, pow, ring_of_residues)
       @result = 1
 
+      if ring_of_residues == 1
+        @result = 0
+        return @result
+      end
+
       loop do
         break if pow == 0 || pow < 0
         pow & 1 == 1 ? (@result = (@result * base) % ring_of_residues) : @result = @result
         base = (base * base) % ring_of_residues
         pow  = pow >> 1
       end
-      
+
       return @result
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_quick_pow
       @quick_pow = QuickPow.find(params[:id])

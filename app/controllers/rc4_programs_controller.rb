@@ -25,14 +25,20 @@ class Rc4ProgramsController < ApplicationController
   # POST /rc4_programs.json
   def create
     @rc4_program = Rc4Program.new(rc4_program_params)
-    process_encrypted
-    respond_to do |format|
-      if @rc4_program.save
-        format.html { redirect_to @rc4_program, notice: 'Rc4 program was successfully created.' }
-        format.json { render :show, status: :created, location: @rc4_program }
-      else
-        format.html { render :new }
-        format.json { render json: @rc4_program.errors, status: :unprocessable_entity }
+    if @rc4_program.key == ""
+      respond_to do |format|
+        format.html { redirect_to new_rc4_program_path, notice: t('flash.rc4_program.present_string') }
+      end
+    else
+      process_encrypted
+      respond_to do |format|
+        if @rc4_program.save
+          format.html { redirect_to rc4_programs_url, notice: t('flash.rc4_program.create')  }
+          format.json { render :show, status: :created, location: @rc4_program }
+        else
+          format.html { render :new }
+          format.json { render json: @rc4_program.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -42,7 +48,7 @@ class Rc4ProgramsController < ApplicationController
   def update
     respond_to do |format|
       if @rc4_program.update(rc4_program_params)
-        format.html { redirect_to @rc4_program, notice: 'Rc4 program was successfully updated.' }
+        format.html { redirect_to rc4_programs_url, notice: t('flash.rc4_program.update') }
         format.json { render :show, status: :ok, location: @rc4_program }
       else
         format.html { render :edit }
@@ -56,14 +62,13 @@ class Rc4ProgramsController < ApplicationController
   def destroy
     @rc4_program.destroy
     respond_to do |format|
-      format.html { redirect_to rc4_programs_url, notice: 'Rc4 program was successfully destroyed.' }
+      format.html { redirect_to rc4_programs_url, notice:  t('flash.rc4_program.delete') }
       format.json { head :no_content }
     end
   end
 
   def process_encrypted
-    key = @rc4_program.key
-    plight_generate key
+    plight_generate @rc4_program.key
     #Присваиваем текст сообщения полю которое отвечает за кодирование сообщения @rc4_program.chanted_message
     @rc4_program.chanted_message = @rc4_program.transient_message
     #Кодируем сообщение
@@ -71,7 +76,7 @@ class Rc4ProgramsController < ApplicationController
     #Присваиваем значение кодированого сообщения полю которое отвечает за раскодирование @rc4_program.message_text
     @rc4_program.message_text = @rc4_program.chanted_message
     #Инициализируем состояние ключей
-    plight_generate key
+    plight_generate @rc4_program.key
     #Раскодируем кодированое сообщение
     encrypt(@rc4_program.message_text)
   end
@@ -90,26 +95,41 @@ class Rc4ProgramsController < ApplicationController
       index += 1
     end
     message
+  end
 
+  #Инициализация ключей для состояний
+  def plight_generate key
+    @plight = []
+    length  = key.length
+    j       = 0
+
+    for i in 0..255
+      @plight[i] = i
+    end
+
+    @plight.each do |i|
+        j = (j + @plight[i] + key.getbyte( i % length)) % 256
+        @plight[i], @plight[j] = @plight[j],@plight[i]
+    end
   end
 
   private
 
-    #Инициализация ключей для состояний
-    def plight_generate key
-      @plight = []
-      length  = key.length
-      j       = 0
-
-      for i in 0..255
-        @plight[i] = i
-      end
-
-      @plight.each do |i|
-          j = (j + @plight[i] + key.getbyte( i % length)) % 256
-          @plight[i], @plight[j] = @plight[j],@plight[i]
-      end
-    end
+    # #Инициализация ключей для состояний
+    # def plight_generate key
+    #   @plight = []
+    #   length  = key.length
+    #   j       = 0
+    #
+    #   for i in 0..255
+    #     @plight[i] = i
+    #   end
+    #
+    #   @plight.each do |i|
+    #       j = (j + @plight[i] + key.getbyte( i % length)) % 256
+    #       @plight[i], @plight[j] = @plight[j],@plight[i]
+    #   end
+    # end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_rc4_program

@@ -1,19 +1,26 @@
-= form_for @quick_pow do |f|
-  - if @quick_pow.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@quick_pow.errors.count, "error")} prohibited this quick_pow from being saved:"
-      %ul
-        - @quick_pow.errors.full_messages.each do |message|
-          %li= message
+%table.table.table-hover
+  %caption
+    = link_to quick_pows_path, class: 'btn btn-default' do
+      = fa_icon 'arrow-left'
+      = t('buttons.back')
 
-  .field
-    = f.label :basis
-    = f.text_field :basis
-  .field
-    = f.label :exponent
-    = f.text_field :exponent
-  .field
-    = f.label :ring_of_residues
-    = f.text_field :ring_of_residues
-  .actions
-    = f.submit 'Save'
+= form_for @quick_pow do |f|
+  = error_messages_for @quick_pow
+  .row
+    .col-md-4
+      .form-group
+        = f.label :basis
+        = f.text_field :basis, class: 'form-control'
+        = f.error_messages_for(:basis)
+    .col-md-4
+      .form-group
+        = f.label :exponent
+        = f.text_field :exponent, class: 'form-control'
+        = f.error_messages_for(:exponent)
+    .col-md-4
+      .form-group
+        = f.label :ring_of_residues
+        = f.text_field :ring_of_residues, class: 'form-control'
+        = f.error_messages_for(:ring_of_residues)
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-success'

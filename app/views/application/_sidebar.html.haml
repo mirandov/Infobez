@@ -1,0 +1,24 @@
+%aside.hidden-print#sidebar-wrapper
+  - side_bar_items.each do |item|
+    - if is_open?(item[:controller])
+      = link_to(url_for(controller: item[:controller], action: item[:action])) do
+        .sidebar-item.selected
+          .row
+            .col-xs-2.text-center
+              = fa_icon(item[:icon], class: 'fa-2x')
+            .col-xs-10.text-left
+              = item[:name]
+    - else
+      = link_to(url_for(controller: item[:controller], action: item[:action])) do
+        .sidebar-item
+          .row
+            .col-xs-2.text-center
+              = fa_icon(item[:icon], class: 'fa-2x')
+            .col-xs-10.text-left
+              = item[:name]
+  .sidebar-footer
+    .row
+      .col-xs-12.text-center
+        = link_to("https://github.com/mirandov/Infobez") do
+          = fa_icon('github', class: 'fa-1x')
+          = "mirandov"

@@ -1,0 +1,65 @@
+ru:
+  app:
+    name: Задачи по информационной безопасности
+    company:
+      short_name: МГИУ
+  headers:
+    rc4_programs:
+      new: Шифрование нового сообщения
+      index: Список шифрованых сообщений
+      edit: Редактирование сообщения
+    quick_pows:
+      new: Создание нового примера
+      index: Список примеров
+      edit: Редактирование примера
+  flash:
+    rc4_program:
+      present_string:   Ключ не может оставаться пустым
+      create: Сообщение успешно создано.
+      update: Сообщение успешно обновлёно.
+      delete: Сообщение успешно удалёно.
+    quick_pow:
+      create: Пример успешно создан.
+      update: Пример успешно обновлён.
+      delete: Пример успешно удалён.
+  sidebar:
+    modular_exponentiation: Алгоритм быстрого возведения в степень в кольце классов вычетов
+    rc4: Алгоритм RC4
+  buttons:
+    edit: Редактировать
+    destroy: Удалить
+    show: Показать
+    back: Назад
+    confirm:
+      quick_pow: Действительно удалить пример?
+      rc4_program: Действительно удалить сообщение?
+    new:
+      rc4_program: Новое сообщение
+      quick_pow: Новый пример
+  views:
+    pagination:
+      first: ⇤
+      last: ⇥
+      previous: ←
+      next: →
+      truncate: …
+  helpers:
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+  activerecord:
+    models:
+      rc4_program: Шифрование RC4
+      quick_pow: Алгоритм быстрого возведения в степень в кольце классов вычетов
+    attributes:
+      rc4_program:
+        key: Ключ шифрования
+        transient_message: Передаваемое сообщение
+        chanted_message: Шифрованое сообщение
+        message_text: Расшифрованое сообщение
+      quick_pow:
+        basis: Основание
+        exponent: Степень
+        ring_of_residues: Модуль
+        result: Результат

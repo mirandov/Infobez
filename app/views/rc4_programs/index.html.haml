@@ -1,0 +1,30 @@
+.page-header
+  %h1= t('headers.rc4_programs.index')
+
+%table.table.table-hover
+  %caption
+    = link_to new_rc4_program_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.rc4_program')
+.row
+  - @rc4_programs.each do |rc4_program|
+    .col-md-4
+      .panel.panel-default
+        .panel-header
+          .col-xs-12.text-right
+            .btn-group.btn-group-ms
+              .black-button
+                = link_to edit_rc4_program_path(rc4_program) do
+                  = fa_icon :pencil
+                = link_to rc4_program, :method => :delete, :data => { :confirm => t('buttons.confirm.rc4_program') } do
+                  = fa_icon :times
+        .panel-body
+          %dl
+            %dt= Rc4Program.human_attribute_name(:key)
+            %dd= rc4_program.key
+            %dt= Rc4Program.human_attribute_name(:transient_message)
+            %dd= rc4_program.transient_message.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
+            %dt= Rc4Program.human_attribute_name(:chanted_message)
+            %dd= rc4_program.chanted_message.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')
+            %dt= Rc4Program.human_attribute_name(:message_text)
+            %dd= rc4_program.message_text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')

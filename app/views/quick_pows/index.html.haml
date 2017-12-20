@@ -1,27 +1,33 @@
-%h1 Listing quick_pows
+.page-header
+  %h1= t('headers.quick_pows.index')
 
-%table
-  %thead
-    %tr
-      %th Basis
-      %th Exponent
-      %th Ring of residues
-      %th Result
-      %th
-      %th
-      %th
-
-  %tbody
-    - @quick_pows.each do |quick_pow|
-      %tr
-        %td= quick_pow.basis
-        %td= quick_pow.exponent
-        %td= quick_pow.ring_of_residues
-        %td= quick_pow.result
-        %td= link_to 'Show', quick_pow
-        %td= link_to 'Edit', edit_quick_pow_path(quick_pow)
-        %td= link_to 'Destroy', quick_pow, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Quick pow', new_quick_pow_path
+%table.table.table-hover
+  %caption
+    = link_to new_quick_pow_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.quick_pow')
+.row
+  - @quick_pows.each do |quick_pow|
+    .col-md-4
+      .panel.panel-default
+        .panel-header
+          .col-xs-12.text-right
+            .btn-group.btn-group-ms
+              .black-button
+                = "[#{quick_pow.id}]"
+                = link_to edit_quick_pow_path(quick_pow) do
+                  = fa_icon :pencil
+                = link_to quick_pow, :method => :delete, :data => { :confirm => t('buttons.confirm.quick_pow') } do
+                  = fa_icon :times
+        .panel-body
+          %math
+            %mrow
+              %mrow
+                %msup
+                  %mi= quick_pow.basis
+                  %mn= quick_pow.exponent
+                %mo (mod
+                %mo= quick_pow.ring_of_residues
+                %mo )
+              %mo =
+              %mo= quick_pow.result

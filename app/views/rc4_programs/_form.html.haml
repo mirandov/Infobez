@@ -1,0 +1,19 @@
+%table.table.table-hover
+  %caption
+    = link_to rc4_programs_path, class: 'btn btn-default' do
+      = fa_icon 'arrow-left'
+      = t('buttons.back')
+= form_for @rc4_program do |f|
+  = error_messages_for @rc4_program
+  .row
+    .col-md-4
+      .form-group
+        = f.label :key
+        = f.text_field :key, class: 'form-control'
+        = f.error_messages_for(:key)
+    .col-md-4
+      .form-group
+        = f.label :transient_message
+        = f.text_field :transient_message, class: 'form-control'
+        = f.error_messages_for(:transient_message)
+  = f.submit nil, class: 'btn btn-success'
