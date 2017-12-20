@@ -31,6 +31,7 @@ gem 'rails-i18n'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'bootstrap-sass'
 group :development, :test do

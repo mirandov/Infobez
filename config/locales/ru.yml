@@ -5,8 +5,8 @@ ru:
       short_name: МГИУ
   headers:
     rc4_programs:
-      new: Шифрование нового сообщения
-      index: Список шифрованых сообщений
+      new: Зашифровать новое сообщения
+      index: Список зашифрованных сообщений
       edit: Редактирование сообщения
     quick_pows:
       new: Создание нового примера
@@ -56,8 +56,8 @@ ru:
       rc4_program:
         key: Ключ шифрования
         transient_message: Передаваемое сообщение
-        chanted_message: Шифрованое сообщение
-        message_text: Расшифрованое сообщение
+        chanted_message: Зашифрованных сообщение
+        message_text: Расшифрованное сообщение
       quick_pow:
         basis: Основание
         exponent: Степень
