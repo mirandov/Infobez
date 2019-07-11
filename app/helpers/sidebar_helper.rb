@@ -8,10 +8,18 @@ module SidebarHelper
       :controller => :quick_pows,
       :action => :index
     }
+
     result << {
       :name => t('sidebar.rc4'),
       :icon => 'diamond',
       :controller => :rc4_programs,
+      :action => :index
+    }
+
+    result << {
+      :name => t('sidebar.h_value'),
+      :icon => 'diamond',
+      :controller => :excess_definitions,
       :action => :index
     }
 

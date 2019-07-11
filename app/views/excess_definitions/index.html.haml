@@ -1,0 +1,35 @@
+.page-header
+  %h1= t('headers.quick_pows.index')
+
+%table.table.table-hover
+  %caption
+    = link_to new_excess_definition_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.quick_pow')
+.row
+  - @excess_definitions.each do |excess_definition|
+    .col-md-4
+      .panel.panel-default
+        .panel-header
+          .col-xs-12.text-right
+            .btn-group.btn-group-ms
+              .black-button
+                = "[#{excess_definition.id}]"
+                = link_to excess_definition, :method => :delete, :data => { :confirm => t('buttons.confirm.quick_pow') } do
+                  = fa_icon :times
+        .panel-body
+          %dl
+            %dt= ExcessDefinition.human_attribute_name(:angle)
+            %dd= excess_definition.v_value + "°" + excess_definition.min + "\'\'" + excess_definition.sec
+          %dl
+            %dt= ExcessDefinition.human_attribute_name(:d_value)
+            %dd= excess_definition.d_value
+          %dl
+            %dt= ExcessDefinition.human_attribute_name(:i_value)
+            %dd= excess_definition.i_value
+          %dl
+            %dt= ExcessDefinition.human_attribute_name(:const)
+            %dd= excess_definition.const
+          %dl
+            %dt= ExcessDefinition.human_attribute_name(:h_value)
+            %dd= excess_definition.h_value

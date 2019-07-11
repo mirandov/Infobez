@@ -1,0 +1,41 @@
+%table.table.table-hover
+  %caption
+    = link_to excess_definitions_path, class: 'btn btn-default' do
+      = fa_icon 'arrow-left'
+      = t('buttons.back')
+
+= form_for @excess_definition do |f|
+  = error_messages_for @excess_definition
+  .row
+    .col-md-4
+      .form-group
+        = f.label :v_value
+        = f.text_field :v_value, class: 'form-control'
+        = f.error_messages_for(:v_value)
+    .col-md-4
+      .form-group
+        = f.label :min
+        = f.text_field :min, class: 'form-control'
+        = f.error_messages_for(:min)
+    .col-md-4
+      .form-group
+        = f.label :sec
+        = f.text_field :sec, class: 'form-control'
+        = f.error_messages_for(:sec)
+    .col-md-4
+      .form-group
+        = f.label :d_value
+        = f.text_field :d_value, class: 'form-control'
+        = f.error_messages_for(:d_value)
+    .col-md-4
+      .form-group
+        = f.label :i_value
+        = f.text_field :i_value, class: 'form-control'
+        = f.error_messages_for(:i_value)
+    .col-md-4
+      .form-group
+        = f.label :const
+        = f.text_field :const, class: 'form-control'
+        = f.error_messages_for(:const)
+  .actions
+    = f.submit 'Save'

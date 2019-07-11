@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206094747) do
+ActiveRecord::Schema.define(version: 20190711160042) do
+
+  create_table "excess_definitions", force: :cascade do |t|
+    t.string   "v_value"
+    t.string   "d_value"
+    t.string   "i_value"
+    t.string   "h_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "const"
+    t.string   "min"
+    t.string   "sec"
+  end
 
   create_table "quick_pows", force: :cascade do |t|
     t.string   "basis"

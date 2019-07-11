@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :excess_definitions
   root 'quick_pows#index'
 
   resources :quick_pows, except: :show

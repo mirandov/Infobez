@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  v_value: 1.5
+  d_value: 1.5
+  i_value: 1.5
+  h_value: 1.5
+
+two:
+  v_value: 1.5
+  d_value: 1.5
+  i_value: 1.5
+  h_value: 1.5

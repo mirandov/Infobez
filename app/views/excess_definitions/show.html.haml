@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b V value:
+  = @excess_definition.v_value
+%p
+  %b D value:
+  = @excess_definition.d_value
+%p
+  %b I value:
+  = @excess_definition.i_value
+%p
+  %b H value:
+  = @excess_definition.h_value
+
+= link_to 'Edit', edit_excess_definition_path(@excess_definition)
+\|
+= link_to 'Back', excess_definitions_path

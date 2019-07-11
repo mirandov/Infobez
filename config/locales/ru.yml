@@ -4,6 +4,9 @@ ru:
     company:
       short_name: МГИУ
   headers:
+    excess_definitions:
+      new:   Расчитать новое значение
+      index: Ранее сделанные значения
     rc4_programs:
       new: Зашифровать новое сообщения
       index: Список зашифрованных сообщений
@@ -23,6 +26,7 @@ ru:
       update: Пример успешно обновлён.
       delete: Пример успешно удалён.
   sidebar:
+    h_value:                Определение превышения
     modular_exponentiation: Алгоритм быстрого возведения в степень в кольце классов вычетов
     rc4: Алгоритм RC4
   buttons:
@@ -53,6 +57,15 @@ ru:
       rc4_program: Шифрование RC4
       quick_pow: Алгоритм быстрого возведения в степень в кольце классов вычетов
     attributes:
+      excess_definition:
+        angle: Угол
+        v_value:   Градусы
+        min:       Минуты
+        sec:       Секунды
+        d_value:   D
+        i_value:   I(пр)
+        h_value:   h
+        const:     V
       rc4_program:
         key: Ключ шифрования
         transient_message: Передаваемое сообщение
