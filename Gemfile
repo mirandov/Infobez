@@ -29,6 +29,14 @@ gem 'devise'
 
 
 
+gem "actionview", ">= 4.2.5"
+
+
+gem "activejob", ">= 4.2.5"
+
+
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
