@@ -1,5 +1,20 @@
 ru:
+  devise:
+    confirmations:
+      confirmed: "Your email address has been successfully confirmed."
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+    registrations:
+      user:
+        signed_up: Вы зарегистрированы в системе
+    sessions:
+      user:
+        signed_in: Вы успешно вошли
+    failure:
+      user:
+        unauthenticated:  Вы вышли из системы
   app:
+
     name: Задачи по информационной безопасности
     company:
       short_name: МГИУ
@@ -31,6 +46,7 @@ ru:
     rc4: Алгоритм RC4
   buttons:
     edit: Редактировать
+
     destroy: Удалить
     show: Показать
     back: Назад
@@ -38,6 +54,8 @@ ru:
       quick_pow: Действительно удалить пример?
       rc4_program: Действительно удалить сообщение?
     new:
+      out:         Выйти
+      session:     Войти
       rc4_program: Новое сообщение
       quick_pow: Новый пример
   views:

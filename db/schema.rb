@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190711160042) do
+ActiveRecord::Schema.define(version: 20190712064419) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "excess_definitions", force: :cascade do |t|
     t.string   "v_value"
@@ -23,7 +26,10 @@ ActiveRecord::Schema.define(version: 20190711160042) do
     t.string   "const"
     t.string   "min"
     t.string   "sec"
+    t.integer  "user_id"
   end
+
+  add_index "excess_definitions", ["user_id"], name: "index_excess_definitions_on_user_id", using: :btree
 
   create_table "quick_pows", force: :cascade do |t|
     t.string   "basis"
@@ -43,4 +49,18 @@ ActiveRecord::Schema.define(version: 20190711160042) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "excess_definitions", "users"
 end

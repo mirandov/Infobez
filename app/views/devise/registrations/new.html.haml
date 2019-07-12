@@ -1,0 +1,47 @@
+.product-model
+  .container
+    .product-price1
+      %br
+      %br
+      .col-md-12.text-center
+        %h2 Регистрация
+      %br
+      %br
+      %br
+      %br
+
+      .col-md-12.text-center
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = devise_error_messages!
+          .col-lg-4.col-lg-offset-4.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2.text-center
+            .row
+              %h4
+                .field
+                  = f.label "E-mail"
+                  %br
+                  = f.email_field :email, autofocus: true, autocomplete: "email"
+                .field
+                  = f.label "Пароль"
+
+                  - if @minimum_password_length
+                    (#{@minimum_password_length} - минимальная длина пароля)
+                  %br/
+                  = f.password_field :password, autocomplete: "new-password"
+                .field
+                  = f.label "Повторите пароль"
+
+                  = f.password_field :password_confirmation, autocomplete: "new-password"
+                %br/
+                .form-actions.bottom20
+                  = f.submit "Зарегистрироваться", class: 'btn btn-success'
+            = link_to new_session_path(resource_name), class: 'btn btn-success' do
+              = t('buttons.new.session')
+          %br
+          %br
+          %br
+          %br
+          %br
+          %br
+          %br
+            %br
+%br

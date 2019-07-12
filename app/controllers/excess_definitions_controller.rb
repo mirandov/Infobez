@@ -4,7 +4,7 @@ class ExcessDefinitionsController < ApplicationController
   # GET /excess_definitions
   # GET /excess_definitions.json
   def index
-    @excess_definitions = ExcessDefinition.all
+    @excess_definitions = ExcessDefinition.where(user_id: current_user.id)
   end
 
   # GET /excess_definitions/1
@@ -27,6 +27,7 @@ class ExcessDefinitionsController < ApplicationController
     pi = 3.1415926535897
     # raise @excess_definition.v_value.inspect
     @excess_definition = ExcessDefinition.new(excess_definition_params)
+    @excess_definition.user_id = current_user.id
     min_sec = (((@excess_definition.sec.to_f / 60) + @excess_definition.min.to_f) / 60).to_s.split('.')[1]
     angle = [@excess_definition.v_value, min_sec].join(".")
     @excess_definition.h_value = (@excess_definition.d_value.to_f * Math::tan(angle.to_f * pi / 180) + @excess_definition.i_value.to_f - @excess_definition.const.to_f).round(3)
@@ -73,6 +74,6 @@ class ExcessDefinitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def excess_definition_params
-      params.require(:excess_definition).permit(:v_value, :d_value, :i_value, :h_value, :const, :min, :sec)
+      params.require(:excess_definition).permit(:v_value, :d_value, :i_value, :h_value, :const, :min, :sec, :user_id)
     end
 end

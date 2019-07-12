@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :excess_definitions
   root 'quick_pows#index'
 

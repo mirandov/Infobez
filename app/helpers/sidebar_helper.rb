@@ -1,27 +1,28 @@
 module SidebarHelper
   def side_bar_items
     result = []
+    if current_user != nil
+      result << {
+        :name => t('sidebar.modular_exponentiation'),
+        :icon => 'diamond',
+        :controller => :quick_pows,
+        :action => :index
+      }
 
-    result << {
-      :name => t('sidebar.modular_exponentiation'),
-      :icon => 'diamond',
-      :controller => :quick_pows,
-      :action => :index
-    }
+      result << {
+        :name => t('sidebar.rc4'),
+        :icon => 'diamond',
+        :controller => :rc4_programs,
+        :action => :index
+      }
 
-    result << {
-      :name => t('sidebar.rc4'),
-      :icon => 'diamond',
-      :controller => :rc4_programs,
-      :action => :index
-    }
-
-    result << {
-      :name => t('sidebar.h_value'),
-      :icon => 'diamond',
-      :controller => :excess_definitions,
-      :action => :index
-    }
+      result << {
+        :name => t('sidebar.h_value'),
+        :icon => 'diamond',
+        :controller => :excess_definitions,
+        :action => :index
+      }
+    end
 
     result
   end
