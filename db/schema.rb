@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -15,6 +16,12 @@ ActiveRecord::Schema.define(version: 20190712064419) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "excess_definitions", force: :cascade do |t|
     t.string   "v_value"
     t.string   "d_value"
@@ -26,8 +33,9 @@ ActiveRecord::Schema.define(version: 20190712064419) do
     t.string   "min"
     t.string   "sec"
     t.integer  "user_id"
-    t.index ["user_id"], name: "index_excess_definitions_on_user_id", using: :btree
   end
+
+  add_index "excess_definitions", ["user_id"], name: "index_excess_definitions_on_user_id", using: :btree
 
   create_table "quick_pows", force: :cascade do |t|
     t.string   "basis"
@@ -55,9 +63,10 @@ ActiveRecord::Schema.define(version: 20190712064419) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "excess_definitions", "users"
 end
