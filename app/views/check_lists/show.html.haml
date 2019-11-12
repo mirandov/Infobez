@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Person:
+  = @check_list.person
+%p
+  %b Order:
+  = @check_list.order
+%p
+  %b User:
+  = @check_list.user
+
+= link_to 'Edit', edit_check_list_path(@check_list)
+\|
+= link_to 'Back', check_lists_path

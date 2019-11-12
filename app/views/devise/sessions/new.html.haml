@@ -1,40 +1,33 @@
-.product-model
-  .container
-    .product-price1
-      %br
-      %br
-      .col-md-12.text-center
-        %h2 Вход
-      %br
-      %br
-      %br
-      %br
-      .top-sing
-        .col-md-12.text-center
+.page-header
+  %h1= t('headers.log_in.index')
 
-          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-            .field
-              = f.label "E-mail"
-              = f.email_field :email, autofocus: true, autocomplete: "email"
-            .field
-              = f.label "Пароль"
-              = f.password_field :password, autocomplete: "current-password"
-            - if devise_mapping.rememberable?
-              .field
-                = f.check_box :remember_me
-                = f.label "Запомнить меня?"
-            .actions
-              = f.submit "Войти"
-          = render "devise/shared/links"
-          %br
-          %br
-          %br
-          %br
-          %br
-          %br
-          %br
-          %br
-          %br
-          %br
-          %br
-%br
+%table.table.table-hover
+  %caption
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+  .row
+    .col-md-6
+      .form-group
+        .input-group.input-group-md
+          %span.input-group-addon.px50
+            %i.fa.fa-user
+          = f.email_field :email,  class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        .input-group.input-group-md
+          %span.input-group-addon.px50
+            %i.fa.fa-key
+          = f.password_field :password, class: 'form-control'
+  .row
+    .col-md-6
+      .checkbox
+        %label
+          = check_box_tag :remember_me, false, true
+          Запомнить меня
+  .row
+    .form-actions
+      .col-md-2
+        .actions
+          = f.submit "Войти"
+      = render "devise/shared/links"

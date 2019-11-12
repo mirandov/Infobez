@@ -1,0 +1,93 @@
+.page-header
+  %h1= t('headers.people.index')
+
+%table.table.table-hover
+  %caption
+    = link_to new_person_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.person')
+%table.table.table-hover
+  %thead
+    %tr
+      %th= Person.human_attribute_name(:fio)
+      %th= Person.human_attribute_name(:sex)
+      %th= Person.human_attribute_name(:contact_phone)
+      %th
+      %th
+      %th
+
+  %tbody
+    - @people.each do |person|
+      %tr.tr-href{data: {link: person_path(person)}}
+        %td= person.first_name + " " + person.last_name + " " + person.patronymic
+        %td= person.sex
+        %td= person.contact_phone
+        %td
+          = link_to person, class: 'btn btn-success' do
+            = fa_icon :eye
+        %td
+          = link_to edit_person_path(person), class: 'btn btn-info' do
+            = fa_icon :edit
+        %td
+          = link_to person, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
+            = fa_icon :times
+-# .row
+-# .row
+-#   - @people.each do |person|
+-#     .col-md-4
+-#       .panel.panel-default
+-#         .panel-header
+-#           .col-xs-12.text-right
+-#             .btn-group.btn-group-ms
+-#               .black-button
+-#                 = "[#{person.id}]"
+-#                 = link_to person, :method => :delete, :data => { :confirm => t('buttons.confirm.quick_pow') } do
+-#                   = fa_icon :times
+-#         .panel-body
+-#           %dl
+-#             %dt=
+-#             %dd= person.
+-#           %dl
+-#             %dt=
+-#             %dd= person.
+-#           %dl
+-#             %dt=
+-#             %dd= person.
+-#           %dl
+-#             %dt=
+-#             %dd= person.
+-#           %dl
+-#             %dt=
+-#             %dd= person.
+
+-# %h1 Listing people
+-#
+-# %table
+-#   %thead
+-#     %tr
+-#       %th First name
+-#       %th Last name
+-#       %th String
+-#       %th Patronymic
+-#       %th Sex
+-#       %th Contact phone
+-#       %th
+-#       %th
+-#       %th
+-#
+-#   %tbody
+-#     - @people.each do |person|
+-#       %tr
+-#         %td= person.first_name
+-#         %td= person.last_name
+-#         %td= person.string
+-#         %td=
+-#         %td=
+-#         %td=
+-#         %td= link_to 'Show', person
+-#         %td= link_to 'Edit', edit_person_path(person)
+-#         %td= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }
+-#
+-# %br
+-#
+-# = link_to 'New Person', new_person_path

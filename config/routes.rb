@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :check_lists
+  resources :orders
+  resources :services
+  resources :people
+  resources :admins
   devise_for :users
   resources :excess_definitions
   root 'quick_pows#index'

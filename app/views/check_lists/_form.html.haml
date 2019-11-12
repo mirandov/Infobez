@@ -1,0 +1,19 @@
+= form_for @check_list do |f|
+  - if @check_list.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@check_list.errors.count, "error")} prohibited this check_list from being saved:"
+      %ul
+        - @check_list.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :person
+    = f.text_field :person
+  .field
+    = f.label :order
+    = f.text_field :order
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions
+    = f.submit 'Save'

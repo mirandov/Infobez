@@ -3,23 +3,23 @@ module SidebarHelper
     result = []
     if current_user != nil
       result << {
-        :name => t('sidebar.modular_exponentiation'),
-        :icon => 'diamond',
-        :controller => :quick_pows,
+        :name => t('sidebar.people'),
+        :icon => 'address-card-o',
+        :controller => :people,
         :action => :index
       }
 
       result << {
-        :name => t('sidebar.rc4'),
-        :icon => 'diamond',
-        :controller => :rc4_programs,
+        :name => t('sidebar.check_lists'),
+        :icon => 'cart-arrow-down',
+        :controller => :check_lists,
         :action => :index
       }
 
       result << {
-        :name => t('sidebar.h_value'),
-        :icon => 'diamond',
-        :controller => :excess_definitions,
+        :name => t('sidebar.admins'),
+        :icon => 'user',
+        :controller => :admins,
         :action => :index
       }
     end

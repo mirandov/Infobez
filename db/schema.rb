@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190712064419) do
+ActiveRecord::Schema.define(version: 20191112131539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_lists", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "order_id"
+    t.integer  "user_id"
+    t.integer  "sale"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "check_lists", ["order_id"], name: "index_check_lists_on_order_id", using: :btree
+  add_index "check_lists", ["person_id"], name: "index_check_lists_on_person_id", using: :btree
+  add_index "check_lists", ["user_id"], name: "index_check_lists_on_user_id", using: :btree
 
   create_table "excess_definitions", force: :cascade do |t|
     t.string   "v_value"
@@ -30,6 +44,27 @@ ActiveRecord::Schema.define(version: 20190712064419) do
   end
 
   add_index "excess_definitions", ["user_id"], name: "index_excess_definitions_on_user_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "service_id"
+    t.integer  "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["person_id"], name: "index_orders_on_person_id", using: :btree
+  add_index "orders", ["service_id"], name: "index_orders_on_service_id", using: :btree
+
+  create_table "people", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "string"
+    t.string   "patronymic"
+    t.string   "sex"
+    t.string   "contact_phone"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "quick_pows", force: :cascade do |t|
     t.string   "basis"
@@ -49,6 +84,13 @@ ActiveRecord::Schema.define(version: 20190712064419) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.string   "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -62,5 +104,10 @@ ActiveRecord::Schema.define(version: 20190712064419) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "check_lists", "orders"
+  add_foreign_key "check_lists", "people"
+  add_foreign_key "check_lists", "users"
   add_foreign_key "excess_definitions", "users"
+  add_foreign_key "orders", "people"
+  add_foreign_key "orders", "services"
 end
