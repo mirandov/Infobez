@@ -24,6 +24,7 @@ ru:
       new: Новый заказ
 
     people:
+      show:  Клиент
       index: Клиенты
       new: Новый клиент
     log_in:
@@ -97,6 +98,7 @@ ru:
         sale:         Скидка
         price:        Цена
       person:
+        mark_model:   Автомобиль
         description:  Подробная информация
         mark_car:     Марка
         model_car:    Модель

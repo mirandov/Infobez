@@ -27,9 +27,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails-i18n'
 gem 'devise'
 gem "cocoon"
-
-
-
+gem 'ransack', '~> 1.8'
+gem 'bootstrap-datepicker-rails'
+gem 'simple_form'
+gem 'jquery-turbolinks'
 
 
 # Use ActiveModel has_secure_password

@@ -1,38 +1,42 @@
-= form_for @person do |f|
-  - if @person.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@person.errors.count, "error")} prohibited this person from being saved:"
-      %ul
-        - @person.errors.full_messages.each do |message|
-          %li= message
+= simple_form_for @person, html: { class: 'col-md-6 col-md-offset-3 text-center', role: 'form1' } do |f|
+  .well
+    .row
+      .col-md-4
+        .form-group
+          = f.input :mark_car
+      .col-md-4
+        .form-group
+          = f.input :model_car
+      .col-md-4
+        .form-group
+          = f.input :number_car
+    .row
+      .col-md-4
+        .form-group
+          = datepicker_field(f, :last_visit)
+      .col-md-4
+        .form-group
+          = f.input :contact_phone
+      .col-md-4
+        .form-group
+          = f.input :description
 
-  .field
-    = f.label :mark_car
-    = f.text_field :mark_car
-  .field
-    = f.label :model_car
-    = f.text_field :model_car
-  .field
-    = f.label :number_car
-    = f.text_field :number_car
-  .field
-    = f.label :last_visit
-    = f.text_field :last_visit
-    .field
-    = f.label :first_name
-    = f.text_field :first_name
-  .field
-    = f.label :second_name
-    = f.text_field :second_name
-  .field
-    = f.label :patronymic
-    = f.text_field :patronymic
-  .field
-    = f.label :contact_phone
-    = f.text_field :contact_phone
-  .field
-    = f.label :description
-    = f.text_field :description
-  .actions
+    .row
+      .col-md-4
+        .form-group
+          = f.input :first_name
+      .col-md-4
+        .form-group
+          = f.input :second_name
+      .col-md-4
+        .form-group
+          = f.input :patronymic
 
-    = f.submit 'Save'
+  %br/
+
+  .form-actions
+    = link_to "Назад", Person,  class: 'btn btn-primary'
+    = f.submit 'Сохранить', class: 'btn btn-primary'
+  -# .actions
+  -#
+  -#   = f.submit 'Save'

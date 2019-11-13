@@ -1,24 +1,30 @@
-%p#notice= notice
-
-%p
-  %b First name:
-  = @person.first_name
-%p
-  %b Last name:
-  = @person.last_name
-%p
-  %b String:
-  = @person.string
-%p
-  %b Patronymic:
-  = @person.patronymic
-%p
-  %b Sex:
-  = @person.sex
-%p
-  %b Contact phone:
-  = @person.contact_phone
-
-= link_to 'Edit', edit_person_path(@person)
-\|
-= link_to 'Back', people_path
+.page-header
+  %h1= "#{@person.full_name}"
+%dl
+  .well.col-md-12
+    .row
+      .col-md-2
+        %dt= Person.human_attribute_name(:mark_model)
+        %dd= @person.full_model
+      .col-md-2
+        %dt= Person.human_attribute_name(:number_car)
+        %dd= @person.number_car
+      .col-md-2
+        %dt= Person.human_attribute_name(:last_visit)
+        %dd= l @person.last_visit, format: :default
+    .row
+      .col-md-2
+        %dt= Person.human_attribute_name(:contact_phone)
+        %dd= @person.contact_phone
+      .col-md-2
+        %dt= Person.human_attribute_name(:fio)
+        %dd= @person.full_name
+      .col-md-2
+        %dt= Person.human_attribute_name(:description)
+        %dd= @person.description
+.text-center
+  %br/
+  %br/
+  = link_to 'К кспику клиентов', people_path, class: 'btn btn-primary btn-sm'
+  = link_to 'Изменить', edit_person_path(@person), class: 'btn btn-primary btn-sm', title: 'Добавить нового клиентов'
+  = link_to 'Удалить', @person, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' }
