@@ -25,7 +25,7 @@ class CheckListsController < ApplicationController
   # POST /check_lists.json
   def create
     @check_list = CheckList.new(check_list_params)
-
+    # raise params.inspect
     respond_to do |format|
       if @check_list.save
         format.html { redirect_to @check_list, notice: 'Check list was successfully created.' }
@@ -69,6 +69,6 @@ class CheckListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_list_params
-      params.require(:check_list).permit(:person_id, :order_id, :user_id, :sale, :price)
+      params.require(:check_list).permit(:person_id, :user_id, :sale, :price, orders_attributes: [:id, :service_id, :person_id, :_destroy])
     end
 end

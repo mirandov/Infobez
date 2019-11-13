@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191112131539) do
+ActiveRecord::Schema.define(version: 20191112131442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "check_lists", force: :cascade do |t|
     t.integer  "person_id"
-    t.integer  "order_id"
     t.integer  "user_id"
     t.integer  "sale"
     t.integer  "price"
@@ -26,7 +25,6 @@ ActiveRecord::Schema.define(version: 20191112131539) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "check_lists", ["order_id"], name: "index_check_lists_on_order_id", using: :btree
   add_index "check_lists", ["person_id"], name: "index_check_lists_on_person_id", using: :btree
   add_index "check_lists", ["user_id"], name: "index_check_lists_on_user_id", using: :btree
 
@@ -48,17 +46,23 @@ ActiveRecord::Schema.define(version: 20191112131539) do
   create_table "orders", force: :cascade do |t|
     t.integer  "service_id"
     t.integer  "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "check_list_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
+  add_index "orders", ["check_list_id"], name: "index_orders_on_check_list_id", using: :btree
   add_index "orders", ["person_id"], name: "index_orders_on_person_id", using: :btree
   add_index "orders", ["service_id"], name: "index_orders_on_service_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "first_name"
-    t.string   "last_name"
-    t.string   "string"
+    t.string   "second_name"
+    t.string   "mark_car"
+    t.string   "model_car"
+    t.string   "number_car"
+    t.date     "last_visit"
+    t.string   "description"
     t.string   "patronymic"
     t.string   "sex"
     t.string   "contact_phone"
@@ -104,10 +108,10 @@ ActiveRecord::Schema.define(version: 20191112131539) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "check_lists", "orders"
   add_foreign_key "check_lists", "people"
   add_foreign_key "check_lists", "users"
   add_foreign_key "excess_definitions", "users"
+  add_foreign_key "orders", "check_lists"
   add_foreign_key "orders", "people"
   add_foreign_key "orders", "services"
 end

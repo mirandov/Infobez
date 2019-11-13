@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.5'
+ruby '2.3.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails_12factor", group: :production
 gem 'rails', '4.2.8'
@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails-i18n'
 gem 'devise'
-
+gem "cocoon"
 
 
 

@@ -9,9 +9,13 @@
 %table.table.table-hover
   %thead
     %tr
+      %th= Person.human_attribute_name(:mark_car)
+      %th= Person.human_attribute_name(:model_car)
+      %th= Person.human_attribute_name(:number_car)
+      %th= Person.human_attribute_name(:last_visit)
       %th= Person.human_attribute_name(:fio)
-      %th= Person.human_attribute_name(:sex)
       %th= Person.human_attribute_name(:contact_phone)
+      %th= Person.human_attribute_name(:description)
       %th
       %th
       %th
@@ -19,9 +23,14 @@
   %tbody
     - @people.each do |person|
       %tr.tr-href{data: {link: person_path(person)}}
-        %td= person.first_name + " " + person.last_name + " " + person.patronymic
-        %td= person.sex
+        %td= person.mark_car
+        %td= person.model_car
+        %td= person.number_car
+        %td= person.last_visit
+        %td= person.first_name + " " + person.second_name + " " + person.patronymic
+        -# %td= person.sex
         %td= person.contact_phone
+        %td= person.description
         %td
           = link_to person, class: 'btn btn-success' do
             = fa_icon :eye

@@ -19,6 +19,10 @@ ru:
     company:
       short_name: МГИУ
   headers:
+    check_lists:
+      index: Все заказы
+      new: Новый заказ
+
     people:
       index: Клиенты
       new: Новый клиент
@@ -62,6 +66,7 @@ ru:
       quick_pow: Действительно удалить пример?
       rc4_program: Действительно удалить сообщение?
     new:
+      check_list:   Новый заказ
       person:     Новый клиент
       out:         Выйти
       session:     Войти
@@ -84,10 +89,22 @@ ru:
       rc4_program: Шифрование RC4
       quick_pow: Алгоритм быстрого возведения в степень в кольце классов вычетов
     attributes:
+      check_list:
+        services:     Услуги
+        person_id:    Клиент
+        user_id:      Мнеджер
+        order_id:     Услуга
+        sale:         Скидка
+        price:        Цена
       person:
+        description:  Подробная информация
+        mark_car:     Марка
+        model_car:    Модель
+        number_car:   ГОС номер
+        last_visit:   Дата последнего визита
         fio:           Ф.И.О.
         first_name:    Фамилия
-        last_name:     Имя
+        second_name:     Имя
         patronymic:    Отчество
         sex:           Пол
         contact_phone: Телефон
