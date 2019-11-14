@@ -15,9 +15,9 @@ ru:
         unauthenticated:  Вы вышли из системы
   app:
 
-    name: Задачи по информационной безопасности
+    name: База клиентов
     company:
-      short_name: МГИУ
+      short_name: БК
   headers:
     check_lists:
       index: Все заказы
