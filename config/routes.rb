@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  root 'people#index'
 
   resources :people_file_cars
 
   resources :check_lists
   resources :orders
   resources :services
-  resources :people, :except => [:new, :create] do
+  resources :people  do
     member do
      resources :file_cars,            :controller => 'file_cars'
     end
@@ -13,7 +14,6 @@ Rails.application.routes.draw do
   resources :admins
   devise_for :users
   resources :excess_definitions
-  root 'quick_pows#index'
 
   resources :quick_pows, except: :show
   resources :rc4_programs

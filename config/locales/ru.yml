@@ -22,7 +22,8 @@ ru:
     check_lists:
       index: Все заказы
       new: Новый заказ
-
+    file_cars:
+      new:  Добавление файлов
     people:
       show:  Клиент
       index: Клиенты
@@ -98,6 +99,7 @@ ru:
         sale:         Скидка
         price:        Цена
       person:
+        files_date:   Дата прикрепления файла
         files:        Файлы клиента
         mark_model:   Автомобиль
         description:  Подробная информация

@@ -1,5 +1,8 @@
 .page-header
   %h1= "#{@person.full_name}"
+= link_to 'Добавить файлы', new_file_car_path(), class: 'btn btn-success'
+%br/
+%br/
 %dl
   .well.col-md-12
     .row
@@ -23,15 +26,20 @@
         %dt= Person.human_attribute_name(:description)
         %dd= @person.description
     .row
-      .col-md-2
+      .col-md-6
         %dt= Person.human_attribute_name(:files)
         - @person.people_file_cars.each do |f|
           - f.file_car.avatars.each do |file|
             %dd= link_to "#{file.file.filename}", file.url ,target: '_blank'
+      .col-md-4
+        %dt= Person.human_attribute_name(:files_date)
+        - @person.people_file_cars.each do |f|
+          - f.file_car.avatars.each do |file|
+            %dd= l f.file_car.created_at, format: :long
+
 .text-center
   %br/
   %br/
-  = link_to 'Edit', new_file_car_path(), params[person_id: @person_id]
   = link_to 'К кспику клиентов', people_path, class: 'btn btn-primary btn-sm'
   = link_to 'Изменить', edit_person_path(@person), class: 'btn btn-primary btn-sm', title: 'Добавить нового клиентов'
   = link_to 'Удалить', @person, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' }

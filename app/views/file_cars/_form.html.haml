@@ -1,11 +1,10 @@
-= form_for @file_car do |f|
-  - if @file_car.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@file_car.errors.count, "error")} prohibited this file_car from being saved:"
-      %ul
-        - @file_car.errors.full_messages.each do |message|
-          %li= message
-  .field
-    =f.file_field :avatars, multiple: true
-  .actions
-    = f.submit 'Save'
+= simple_form_for @file_car, html: { class: 'col-md-6 col-md-offset-3 text-center', role: 'form1' } do |f|
+  .well
+    .row
+      .col-md-4
+        .form-group
+          = f.file_field :avatars, multiple: true
+  %br/
+  .form-actions
+    = link_to "Назад", Person.find(params[:id]),  class: 'btn btn-primary'
+    = f.submit "Сохранить", class: 'btn btn-primary'
