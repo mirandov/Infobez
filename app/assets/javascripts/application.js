@@ -19,4 +19,4 @@
 //= require moment/ru
 //= require_tree .
 //= require cocoon
-//= require turbolinks
+//= require datepicker

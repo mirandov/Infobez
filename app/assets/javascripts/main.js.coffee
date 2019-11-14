@@ -1,4 +1,4 @@
-loader_f = ->
+$ ->
 
   $inputGroup = $('.datepicker').parent('.input-group')
 
@@ -11,8 +11,3 @@ loader_f = ->
     language: 'ru'
     autoclose: true
     todayHighlight: true
-app_ready_f = ->
-  loader_f()
-$(document).ready app_ready_f
-$(document).on 'page:load', app_ready_f
-$(document).on 'turbolinks:load', app_ready

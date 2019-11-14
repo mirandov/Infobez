@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Person:
+  = @people_file_car.person
+%p
+  %b File car:
+  = @people_file_car.file_car
+
+= link_to 'Edit', edit_people_file_car_path(@people_file_car)
+\|
+= link_to 'Back', people_file_cars_path

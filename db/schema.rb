@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191112131442) do
+ActiveRecord::Schema.define(version: 20191114095225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,12 @@ ActiveRecord::Schema.define(version: 20191112131442) do
 
   add_index "excess_definitions", ["user_id"], name: "index_excess_definitions_on_user_id", using: :btree
 
+  create_table "file_cars", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.json     "avatars"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "service_id"
     t.integer  "person_id"
@@ -68,7 +74,18 @@ ActiveRecord::Schema.define(version: 20191112131442) do
     t.string   "contact_phone"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "upload"
   end
+
+  create_table "people_file_cars", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "file_car_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "people_file_cars", ["file_car_id"], name: "index_people_file_cars_on_file_car_id", using: :btree
+  add_index "people_file_cars", ["person_id"], name: "index_people_file_cars_on_person_id", using: :btree
 
   create_table "quick_pows", force: :cascade do |t|
     t.string   "basis"
@@ -114,4 +131,6 @@ ActiveRecord::Schema.define(version: 20191112131442) do
   add_foreign_key "orders", "check_lists"
   add_foreign_key "orders", "people"
   add_foreign_key "orders", "services"
+  add_foreign_key "people_file_cars", "file_cars"
+  add_foreign_key "people_file_cars", "people"
 end

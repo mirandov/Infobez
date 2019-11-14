@@ -1,0 +1,23 @@
+%h1 Listing people_file_cars
+
+%table
+  %thead
+    %tr
+      %th Person
+      %th File car
+      %th
+      %th
+      %th
+
+  %tbody
+    - @people_file_cars.each do |people_file_car|
+      %tr
+        %td= people_file_car.person
+        %td= people_file_car.file_car
+        %td= link_to 'Show', people_file_car
+        %td= link_to 'Edit', edit_people_file_car_path(people_file_car)
+        %td= link_to 'Destroy', people_file_car, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New People file car', new_people_file_car_path

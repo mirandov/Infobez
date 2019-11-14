@@ -1,0 +1,24 @@
+%h1 Listing file_cars
+
+%table
+  %thead
+    %tr
+      %th Файл
+      %th
+      %th
+      %th
+
+  %tbody
+    - @file_cars.each do |file_car|
+      %tr
+        %td
+          - file_car.avatars.each do |file|
+            %li= file.file.filename
+
+        %td= link_to 'Show', file_car
+        %td= link_to 'Edit', edit_file_car_path(file_car)
+        %td= link_to 'Destroy', file_car, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New File car', new_file_car_path

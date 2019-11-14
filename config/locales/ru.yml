@@ -98,6 +98,7 @@ ru:
         sale:         Скидка
         price:        Цена
       person:
+        files:        Файлы клиента
         mark_model:   Автомобиль
         description:  Подробная информация
         mark_car:     Марка

@@ -1,0 +1,33 @@
+= form_for @people_file_car do |f|
+  - if @people_file_car.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@people_file_car.errors.count, "error")} prohibited this people_file_car from being saved:"
+      %ul
+        - @people_file_car.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :person
+    = f.text_field :person
+  .field
+    = f.label :file_car
+    = f.text_field :file_car
+  #tasks
+  = f.fields_for :file_cars do |file_car|
+    .nested-fields
+      %br
+      .row
+        .col-md-4
+          .form-group
+            =f.file_field :avatars, multiple: true
+        -# .col-md-4
+        -#   .form-group
+        -#     = f.label :person
+        -#     = f.text_field :person_id, class: 'form-control'
+  .links
+    = link_to_add_association 'add file_cars', f, :orders
+
+    = link_to_remove_association "remove order", f
+
+  .actions
+    = f.submit 'Save'

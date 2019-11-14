@@ -31,8 +31,7 @@ gem 'ransack', '~> 1.8'
 gem 'bootstrap-datepicker-rails'
 gem 'simple_form'
 gem 'jquery-turbolinks'
-
-
+gem 'carrierwave'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

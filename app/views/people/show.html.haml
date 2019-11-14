@@ -22,9 +22,16 @@
       .col-md-2
         %dt= Person.human_attribute_name(:description)
         %dd= @person.description
+    .row
+      .col-md-2
+        %dt= Person.human_attribute_name(:files)
+        - @person.people_file_cars.each do |f|
+          - f.file_car.avatars.each do |file|
+            %dd= link_to "#{file.file.filename}", file.url ,target: '_blank'
 .text-center
   %br/
   %br/
+  = link_to 'Edit', new_file_car_path(), params[person_id: @person_id]
   = link_to 'К кспику клиентов', people_path, class: 'btn btn-primary btn-sm'
   = link_to 'Изменить', edit_person_path(@person), class: 'btn btn-primary btn-sm', title: 'Добавить нового клиентов'
   = link_to 'Удалить', @person, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' }
