@@ -28,7 +28,7 @@ class FileCarsController < ApplicationController
     respond_to do |format|
       if @file_car.save
         @people_file_cars = PeopleFileCar.create!(person_id: params[:id], file_car_id: @file_car.id)
-        format.html { redirect_to Person.find(params[:id]), notice: 'File car was successfully created.' }
+        format.html { redirect_to Person.find(params[:id]), notice: 'Файлы добавлены' }
         format.json { render :show, status: :created, location: @file_car }
       else
         format.html { render :new }
