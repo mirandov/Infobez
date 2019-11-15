@@ -11,6 +11,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @check_lists = CheckList.where(person_id: @person.id)
   end
 
   # GET /people/new

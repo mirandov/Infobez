@@ -18,7 +18,7 @@
     = link_to 'Сбросить', people_path, class: 'btn btn-default'
 %br
 %br
-%table.table.table-hover
+%table.table.table-hover.sortable
   %thead
     %tr
       %th= Person.human_attribute_name(:mark_car)
@@ -30,7 +30,7 @@
       %th= Person.human_attribute_name(:description)
       %th
       %th
-      %th
+
 
   %tbody
     - @people.each do |person|
@@ -49,7 +49,7 @@
         %td
           = link_to edit_person_path(person), class: 'btn btn-info' do
             = fa_icon :edit
-      
+
 -# .row
 -# .row
 -#   - @people.each do |person|

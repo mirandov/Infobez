@@ -92,7 +92,12 @@ ru:
       rc4_program: Шифрование RC4
       quick_pow: Алгоритм быстрого возведения в степень в кольце классов вычетов
     attributes:
+      order:
+        price: Цена
+        name_service: Услуга
       check_list:
+        total_price:  Сумма заказ-наряда
+        created_at:   Дата оформлния заказ-наряда
         services:     Услуги
         person_id:    Клиент
         user_id:      Мнеджер

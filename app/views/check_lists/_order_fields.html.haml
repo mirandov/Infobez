@@ -1,12 +1,17 @@
 .nested-fields
   %br
   .row
+
+    = f.input :person_id, as: :hidden, input_html: {value: params[:id]}
     .col-md-4
       .form-group
-        = f.label :service
-        = f.select :service_id ,options_for_select((Service.all.map{|t| ["#{t.name}", t.id]}), f.object.service_id), class: 'form-control'
+
+        = f.input :price, class: 'form-control'
+
     .col-md-4
       .form-group
-        = f.label :person
-        = f.text_field :person_id, class: 'form-control'
-  = link_to_remove_association "remove order", f
+
+        = f.input :name_service, class: 'form-control'
+  %br
+  = link_to_remove_association "Удалить услугу", f, class: 'btn btn-danger'
+  %br

@@ -25,10 +25,11 @@ class CheckListsController < ApplicationController
   # POST /check_lists.json
   def create
     @check_list = CheckList.new(check_list_params)
+    @check_list.price = total_price(params[:check_list][:orders_attributes])
     # raise params.inspect
     respond_to do |format|
       if @check_list.save
-        format.html { redirect_to @check_list, notice: 'Check list was successfully created.' }
+        format.html { redirect_to Person.find(@check_list.person_id), notice: 'Check list was successfully created.' }
         format.json { render :show, status: :created, location: @check_list }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class CheckListsController < ApplicationController
   def update
     respond_to do |format|
       if @check_list.update(check_list_params)
-        format.html { redirect_to @check_list, notice: 'Check list was successfully updated.' }
+        format.html { redirect_to Person.find(@check_list.person_id), notice: 'Check list was successfully updated.' }
         format.json { render :show, status: :ok, location: @check_list }
       else
         format.html { render :edit }
@@ -62,6 +63,14 @@ class CheckListsController < ApplicationController
   end
 
   private
+
+    def total_price(orders)
+      sum_price = 0
+      orders.each do |o|
+        sum_price+= o[1][:price].to_i
+      end
+      return sum_price
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_check_list
       @check_list = CheckList.find(params[:id])
@@ -69,6 +78,6 @@ class CheckListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_list_params
-      params.require(:check_list).permit(:person_id, :user_id, :sale, :price, orders_attributes: [:id, :service_id, :person_id, :_destroy])
+      params.require(:check_list).permit(:person_id, :user_id, :sale, :price, orders_attributes: [:id, :service_id, :person_id, :price, :name_service, :_destroy])
     end
 end

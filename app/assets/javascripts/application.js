@@ -20,3 +20,4 @@
 //= require_tree .
 //= require cocoon
 //= require datepicker
+//= require sorttable
