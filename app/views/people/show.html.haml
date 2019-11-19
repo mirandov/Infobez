@@ -57,7 +57,7 @@
           - check_list.orders.each do |o|
             %dd= o.name_service + " #{o.price} " + "руб."
         %td= "#{check_list.price} руб."
-        %td= check_list.order_date.present? ? (l check_list.order_date, format: :normal) : "отсутствует"
+        %td= check_list.order_date.present? ? (l check_list.order_date, format: :default) : "отсутствует"
 
 
 .text-center
