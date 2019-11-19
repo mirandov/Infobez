@@ -5,13 +5,13 @@ Rails.application.routes.draw do
 
   resources :people_file_cars
 
-  # resources :check_lists
+  resources :check_lists
   resources :orders
   resources :services
   resources :people  do
     member do
      resources :file_cars,            :controller => 'file_cars'
-     resources :check_lists,          :controller => 'check_lists'
+     # resources :check_lists,          :controller => 'check_lists'
     end
   end
   resources :admins

@@ -2,7 +2,7 @@
   .well
     .row
       = f.input :admin_id, collection:  admins_select
-      = f.input :person_id, as: :hidden, input_html: {value: params[:id]}
+      = f.input :person_id, as: :hidden, input_html: {value: params[:person_id]}
       #tasks
         = f.simple_fields_for :orders do |order|
           = render 'order_fields', f: order

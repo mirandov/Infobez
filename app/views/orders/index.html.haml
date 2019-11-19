@@ -2,12 +2,21 @@
   %h1= t('headers.check_lists.index')
 
 
+= search_form_for @q , html: { class: 'form-inline form-inline-search form-inline-5 text-center', role: 'form' } do |f|
+  = f.search_field 'admin_id_eq', class: 'form-control', placeholder: "Марка или Модель"
+  = f.search_field 'number_car_start', class: 'form-control', placeholder: "ГОС номер"
+  = f.search_field 'last_visit_eq', class: 'form-control', placeholder: "Дата формата дд.мм.гггг"
 
-%table.table.table-hover
+  %br
+  %br
+  .inline.text-center
+    = f.submit 'Поиск', class: 'btn btn-primary'
+    = link_to 'Сбросить', orders_path, class: 'btn btn-default'
+%table.table.table-hover.sortable
   %thead
     %tr
       %th= CheckList.human_attribute_name(:person_id)
-      %th= CheckList.human_attribute_name(:user_id)
+      %th= CheckList.human_attribute_name(:admin_id)
       %th= CheckList.human_attribute_name(:services)
       %th= CheckList.human_attribute_name(:price)
       %th= CheckList.human_attribute_name(:sale)

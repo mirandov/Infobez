@@ -12,7 +12,7 @@ module SidebarHelper
       result << {
         :name => t('sidebar.check_lists'),
         :icon => 'cart-arrow-down',
-        :controller => :orders,
+        :controller => :check_lists,
         :action => :index
       }
 

@@ -1,40 +1,32 @@
 .page-header
   %h1= t('headers.check_lists.index')
 
-%table.table.table-hover
-  %caption
-    = link_to new_check_list_path, class: 'btn btn-success' do
-      = fa_icon :plus
-      = t('buttons.new.check_list')
 
-%table.table.table-hover
+= search_form_for @q , html: { class: 'form-inline form-inline-search form-inline-5 text-center', role: 'form' } do |f|
+  = f.search_field 'admin_cont', class: 'form-control', placeholder: "Фамили, Имя или Отчество"
+  
+  %br
+  %br
+  .inline.text-center
+    = f.submit 'Поиск', class: 'btn btn-primary'
+    = link_to 'Сбросить', check_lists_path, class: 'btn btn-default'
+%table.table.table-hover.sortable
   %thead
     %tr
       %th= CheckList.human_attribute_name(:person_id)
-      %th= CheckList.human_attribute_name(:user_id)
+      %th= CheckList.human_attribute_name(:admin_id)
       %th= CheckList.human_attribute_name(:services)
       %th= CheckList.human_attribute_name(:price)
       %th= CheckList.human_attribute_name(:sale)
-      %th
-      %th
-      %th
+
 
   %tbody
     - @check_lists.each do |check_list|
       %tr.tr-href
         %td= check_list.person.first_name
-        %td= check_list.user.email
+        %td= check_list.admin.second_name
         %td
           - check_list.orders.each do |order|
-            %li= order.service.name
+            %dd= order.name_service + " #{order.price} " + "руб."
         %td= check_list.price
         %td= check_list.sale
-        %td
-          = link_to check_list, class: 'btn btn-success' do
-            = fa_icon :eye
-        %td
-          = link_to edit_check_list_path(check_list), class: 'btn btn-info' do
-            = fa_icon :edit
-        %td
-          = link_to check_list, :method => :delete, :data => { :confirm => t('helpers.sure') }, class: 'btn btn-danger' do
-            = fa_icon :times

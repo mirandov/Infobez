@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    @q = CheckList.ransack(params[:q])
+    @check_lists = @q.result(distinct: true)
     @check_lists = CheckList.all
   end
 
