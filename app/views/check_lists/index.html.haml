@@ -23,8 +23,8 @@
   %tbody
     - @check_lists.each do |check_list|
       %tr.tr-href
-        %td= check_list.person.first_name
-        %td= check_list.admin.present? ? (check_list.admin.second_name) : "отсутствует"
+        %td= check_list.person.full_name
+        %td= check_list.admin.present? ? (check_list.admin.full_name) : "отсутствует"
         %td
           - check_list.orders.each do |order|
             %dd= order.name_service + " #{order.price} " + "руб."

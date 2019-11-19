@@ -42,6 +42,7 @@
 %table.table.table-hover.sortable
   %thead
     %tr
+      %th= CheckList.human_attribute_name(:admin_id)
       %th= CheckList.human_attribute_name(:services)
       %th= CheckList.human_attribute_name(:total_price)
       %th= CheckList.human_attribute_name(:created_at)
@@ -51,6 +52,7 @@
   %tbody
     - @check_lists.each do |check_list|
       %tr
+        %td= check_list.admin.present? ? (check_list.admin.full_name ) : "отсутствует"
         %td
           - check_list.orders.each do |o|
             %dd= o.name_service + " #{o.price} " + "руб."
