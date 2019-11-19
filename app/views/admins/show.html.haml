@@ -31,7 +31,7 @@
             %dd= o.name_service + " #{o.price} " + "руб."
         %td= "#{check_list.price} руб."
         %td= "#{check_list.sale} руб."
-        %td= l check_list.order_date, format: :default
+        %td= check_list.order_date.present? ? (l check_list.order_date, format: :normal) : "отсутствует"
 
 
 .text-center

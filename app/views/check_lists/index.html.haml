@@ -18,6 +18,7 @@
       %th= CheckList.human_attribute_name(:services)
       %th= CheckList.human_attribute_name(:price)
       %th= CheckList.human_attribute_name(:sale)
+      %th= CheckList.human_attribute_name(:order_date)
 
 
   %tbody
@@ -30,3 +31,4 @@
             %dd= order.name_service + " #{order.price} " + "руб."
         %td= "#{check_list.price} руб."
         %td= "#{check_list.sale} руб."
+        %td= check_list.order_date.present? ? (l check_list.order_date, format: :normal) : "отсутствует"

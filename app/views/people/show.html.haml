@@ -45,7 +45,7 @@
       %th= CheckList.human_attribute_name(:admin_id)
       %th= CheckList.human_attribute_name(:services)
       %th= CheckList.human_attribute_name(:total_price)
-      %th= CheckList.human_attribute_name(:created_at)
+      %th= CheckList.human_attribute_name(:order_date)
 
 
 
@@ -57,7 +57,7 @@
           - check_list.orders.each do |o|
             %dd= o.name_service + " #{o.price} " + "руб."
         %td= "#{check_list.price} руб."
-        %td= l check_list.created_at, format: :long
+        %td= check_list.order_date.present? ? (l check_list.order_date, format: :normal) : "отсутствует"
 
 
 .text-center
