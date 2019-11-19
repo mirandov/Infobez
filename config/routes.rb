@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :admins
+  resources :admins
   root 'people#index'
 
   resources :people_file_cars

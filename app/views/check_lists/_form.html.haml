@@ -1,6 +1,7 @@
 = simple_form_for @check_list, html: { class: 'col-md-6 col-md-offset-3 text-center', role: 'form1' } do |f|
   .well
     .row
+      = f.input :admin_id, collection:  admins_select
       = f.input :person_id, as: :hidden, input_html: {value: params[:id]}
       #tasks
         = f.simple_fields_for :orders do |order|
@@ -8,7 +9,17 @@
         .links
           %br
           = link_to_add_association 'Добавить услууr', f, :orders, class: 'btn btn-success'
-
+    %br/
+    .row
+      .col-md-6
+        .form-group
+          = datepicker_field(f, :order_date)
+      .col-md-6
+        .form-group
+          = f.input :sale
+    .row
+      .form-group
+        = f.input :comment
   %br/
 
   .form-actions

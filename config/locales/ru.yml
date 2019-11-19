@@ -24,6 +24,11 @@ ru:
       new: Новый заказ
     file_cars:
       new:  Добавление файлов
+    admins:
+      edit:  Редактирование данных мастера
+      show:  Мастер
+      index: Мастера
+      new: Новый мастер
     people:
       edit:  Редактирование данных клиента
       show:  Клиент
@@ -69,6 +74,7 @@ ru:
       quick_pow: Действительно удалить пример?
       rc4_program: Действительно удалить сообщение?
     new:
+      admin:        Новый мастер
       check_list:   Новый заказ
       person:     Новый клиент
       out:         Выйти
@@ -96,14 +102,22 @@ ru:
         price: Цена
         name_service: Услуга
       check_list:
+        order_date:   Дата выполнения работ
+        comment:      Комментарий
         total_price:  Сумма заказ-наряда
         created_at:   Дата оформлния заказ-наряда
         services:     Услуги
         person_id:    Клиент
-        user_id:      Мнеджер
+        user_id:      Менеджер
+        admin_id:      Менеджер
         order_id:     Услуга
-        sale:         Скидка
+        sale:         Процент мастера
         price:        Цена
+      admin:
+        fio:           Ф.И.О.
+        first_name:    Фамилия
+        second_name:     Имя
+        patronymic:    Отчество
       person:
         files_date:   Дата прикрепления файла
         files:        Файлы клиента

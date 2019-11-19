@@ -26,6 +26,8 @@ class CheckListsController < ApplicationController
   def create
     @check_list = CheckList.new(check_list_params)
     @check_list.price = total_price(params[:check_list][:orders_attributes])
+    @check_list.sale  = (@check_list.price * @check_list.sale) / 100.0
+    Person.find(@check_list.person_id).update!(last_visit: @check_list.order_date)
     # raise params.inspect
     respond_to do |format|
       if @check_list.save
@@ -78,6 +80,6 @@ class CheckListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_list_params
-      params.require(:check_list).permit(:person_id, :user_id, :sale, :price, orders_attributes: [:id, :service_id, :person_id, :price, :name_service, :_destroy])
+      params.require(:check_list).permit(:person_id, :admin_id, :sale, :comment, :order_date, :price, orders_attributes: [:id, :service_id, :person_id, :price, :name_service, :_destroy])
     end
 end

@@ -1,0 +1,39 @@
+.page-header
+  %h1= "#{@admin.full_name}"
+%br/
+%br/
+%dl
+  .well.col-md-12
+    .row
+      .col-md-2
+        %dt= Admin.human_attribute_name(:fio)
+        %dd= @admin.full_name
+%br
+%br
+%table.table.table-hover.sortable
+  %thead
+    %tr
+      %th= CheckList.human_attribute_name(:services)
+      %th= CheckList.human_attribute_name(:total_price)
+      %th= CheckList.human_attribute_name(:sale)
+      %th= CheckList.human_attribute_name(:order_date)
+
+
+
+
+  %tbody
+    - @check_lists.each do |check_list|
+      %tr
+        %td
+          - check_list.orders.each do |o|
+            %dd= o.name_service + " #{o.price} " + "руб."
+        %td= "#{check_list.price} руб."
+        %td= "#{check_list.sale} руб."
+        %td= l check_list.order_date, format: :default
+
+
+.text-center
+  %br/
+  %br/
+  = link_to 'К кспику клиентов', admins_path, class: 'btn btn-primary btn-sm'
+  = link_to 'Изменить', edit_admin_path(@admin), class: 'btn btn-primary btn-sm'

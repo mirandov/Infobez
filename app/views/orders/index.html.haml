@@ -1,23 +1,25 @@
-%h1 Listing orders
+.page-header
+  %h1= t('headers.check_lists.index')
 
-%table
+
+
+%table.table.table-hover
   %thead
     %tr
-      %th Service
-      %th Person
-      %th
-      %th
-      %th
+      %th= CheckList.human_attribute_name(:person_id)
+      %th= CheckList.human_attribute_name(:user_id)
+      %th= CheckList.human_attribute_name(:services)
+      %th= CheckList.human_attribute_name(:price)
+      %th= CheckList.human_attribute_name(:sale)
+
 
   %tbody
-    - @orders.each do |order|
-      %tr
-        %td= order.service
-        %td= order.person
-        %td= link_to 'Show', order
-        %td= link_to 'Edit', edit_order_path(order)
-        %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Order', new_order_path
+    - @check_lists.each do |check_list|
+      %tr.tr-href
+        %td= check_list.person.first_name
+        %td= check_list.admin.second_name
+        %td
+          - check_list.orders.each do |order|
+            %dd= order.name_service + " #{order.price} " + "руб."
+        %td= check_list.price
+        %td= check_list.sale

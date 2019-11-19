@@ -9,19 +9,19 @@ module SidebarHelper
         :action => :index
       }
 
-      # result << {
-      #   :name => t('sidebar.check_lists'),
-      #   :icon => 'cart-arrow-down',
-      #   :controller => :check_lists,
-      #   :action => :index
-      # }
-      #
-      # result << {
-      #   :name => t('sidebar.admins'),
-      #   :icon => 'user',
-      #   :controller => :admins,
-      #   :action => :index
-      # }
+      result << {
+        :name => t('sidebar.check_lists'),
+        :icon => 'cart-arrow-down',
+        :controller => :orders,
+        :action => :index
+      }
+
+      result << {
+        :name => t('sidebar.admins'),
+        :icon => 'user',
+        :controller => :admins,
+        :action => :index
+      }
     end
 
     result

@@ -1,0 +1,19 @@
+= simple_form_for @admin, html: { class: 'col-md-6 col-md-offset-3 text-center', role: 'form1' } do |f|
+  .well
+    .row
+      .col-md-4
+        .form-group
+          = f.input :first_name
+      .col-md-4
+        .form-group
+          = f.input :second_name
+      .col-md-4
+        .form-group
+          = f.input :patronymic
+
+
+  %br/
+
+  .form-actions
+    = link_to "Назад", Admin,  class: 'btn btn-primary'
+    = f.submit 'Сохранить', class: 'btn btn-primary'

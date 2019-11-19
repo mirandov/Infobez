@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191115090922) do
+ActiveRecord::Schema.define(version: 20191119094545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "second_name"
+    t.string   "patronymic"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "check_lists", force: :cascade do |t|
     t.integer  "person_id"
@@ -23,8 +31,12 @@ ActiveRecord::Schema.define(version: 20191115090922) do
     t.integer  "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "comment"
+    t.date     "order_date"
+    t.integer  "admin_id"
   end
 
+  add_index "check_lists", ["admin_id"], name: "index_check_lists_on_admin_id", using: :btree
   add_index "check_lists", ["person_id"], name: "index_check_lists_on_person_id", using: :btree
   add_index "check_lists", ["user_id"], name: "index_check_lists_on_user_id", using: :btree
 
@@ -77,6 +89,7 @@ ActiveRecord::Schema.define(version: 20191115090922) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "upload"
+    t.string   "car_mileage"
   end
 
   create_table "people_file_cars", force: :cascade do |t|
@@ -127,6 +140,7 @@ ActiveRecord::Schema.define(version: 20191115090922) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "check_lists", "admins"
   add_foreign_key "check_lists", "people"
   add_foreign_key "check_lists", "users"
   add_foreign_key "excess_definitions", "users"
