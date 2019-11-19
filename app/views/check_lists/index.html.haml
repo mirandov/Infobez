@@ -28,5 +28,5 @@
         %td
           - check_list.orders.each do |order|
             %dd= order.name_service + " #{order.price} " + "руб."
-        %td= check_list.price
-        %td= check_list.sale
+        %td= "#{check_list.price} руб."
+        %td= "#{check_list.sale} руб."
