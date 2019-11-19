@@ -4,7 +4,7 @@
 
 = search_form_for @q , html: { class: 'form-inline form-inline-search form-inline-5 text-center', role: 'form' } do |f|
   = f.search_field 'admin_cont', class: 'form-control', placeholder: "Фамили, Имя или Отчество"
-  
+
   %br
   %br
   .inline.text-center
@@ -24,7 +24,7 @@
     - @check_lists.each do |check_list|
       %tr.tr-href
         %td= check_list.person.first_name
-        %td= check_list.admin.second_name
+        %td= check_list.admin.present? ? (check_list.admin.second_name) : "отсутствует"
         %td
           - check_list.orders.each do |order|
             %dd= order.name_service + " #{order.price} " + "руб."
