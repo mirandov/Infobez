@@ -26,8 +26,10 @@ class CheckListsController < ApplicationController
   # POST /check_lists.json
   def create
     @check_list = CheckList.new(check_list_params)
-    @check_list.price = total_price(params[:check_list][:orders_attributes])
-    @check_list.sale  = (@check_list.price * @check_list.sale) / 100.0
+    if params[:check_list][:orders_attributes].present?
+      @check_list.price = total_price(params[:check_list][:orders_attributes])
+      @check_list.sale  = (@check_list.price * @check_list.sale) / 100.0
+    end
     Person.find(@check_list.person_id).update!(last_visit: @check_list.order_date)
     # raise params.inspect
     respond_to do |format|
