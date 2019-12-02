@@ -32,3 +32,5 @@
         %td= "#{check_list.price} руб."
         %td= "#{check_list.sale} руб."
         %td= check_list.order_date.present? ? (l check_list.order_date, format: :default) : "отсутствует"
+.page-header.text-right
+  %h4= "Сумма #{@sum} руб."

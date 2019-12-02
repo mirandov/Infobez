@@ -12,6 +12,12 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @check_lists = CheckList.where(person_id: @person.id)
+    @sum = 0
+    @check_lists.each do |ch|
+      ch.orders.each do |o|
+        @sum += o.price
+      end
+    end
   end
 
   # GET /people/new

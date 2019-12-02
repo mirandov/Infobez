@@ -58,8 +58,10 @@
             %dd= o.name_service + " #{o.price} " + "руб."
         %td= "#{check_list.price} руб."
         %td= check_list.order_date.present? ? (l check_list.order_date, format: :default) : "отсутствует"
-
-
+%br
+%br
+.page-header.text-center
+  %h4= "Сумма #{@sum} руб."
 .text-center
   %br/
   %br/

@@ -6,6 +6,12 @@ class CheckListsController < ApplicationController
   def index
     @q = CheckList.ransack(params[:q])
     @check_lists = @q.result(distinct: true)
+    @sum = 0
+    @check_lists.each do |ch|
+      ch.orders.each do |o|
+        @sum += o.price
+      end
+    end
   end
 
   # GET /check_lists/1
